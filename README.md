@@ -39,7 +39,7 @@
     - Configure [commitlint](https://commitlint.js.org/guides/getting-started.html)
 
       ```shell
-      echo "{ \"extends\": [\"@commitlint/config-conventional\"] }" > .commitlintrc.json
+      echo "export default { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js
       ```
 
 1. Commit changes
@@ -48,5 +48,5 @@
     git status
     git add .
     git commit -m "<COMMIT MESSAGE>"
-    git push
+    git push --set-upstream origin main
     ```

@@ -102,6 +102,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
 
   # Pre-jobs add here... for example deploy to test env

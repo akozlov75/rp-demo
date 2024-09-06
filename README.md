@@ -92,46 +92,48 @@
 
 ## [GitHub Actions](https://docs.github.com/en/actions)
 
-Set up GitHub actions by adding bellow content to `.github\workflows\main.yml` file
+1. Set up GitHub actions by adding bellow content to `.github\workflows\main.yml` file
 
-```yaml
-name: Create release PR
+    ```yaml
+    name: Create release PR
 
-on:
-  push:
-    branches:
-      - main
+    on:
+      push:
+        branches:
+          - main
 
-permissions:
-  contents: write
-  pull-requests: write
+    permissions:
+      contents: write
+      pull-requests: write
 
-jobs:
+    jobs:
 
-  # Pre-jobs add here... for example deploy to test env
+      # Pre-jobs add here... for example deploy to test env
 
-  # Make release PR
-  release-please:
-    runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release-please.outputs.releases_created }}
-      version: ${{ steps.release-please.outputs.major }}.${{ steps.release-please.outputs.minor }}.${{ steps.release-please.outputs.patch }}
-    steps:
-      - uses: googleapis/release-please-action@v4
-        id: release-please
-        with:
-          target-branch: ${{ github.ref_name }}
+      # Make release PR
+      release-please:
+        runs-on: ubuntu-latest
+        outputs:
+          release_created: ${{ steps.release-please.outputs.releases_created }}
+          version: ${{ steps.release-please.outputs.major }}.${{ steps.release-please.outputs.minor }}.${{ steps.release-please.outputs.patch }}
+        steps:
+          - uses: googleapis/release-please-action@v4
+            id: release-please
+            with:
+              target-branch: ${{ github.ref_name }}
 
-  # Here we can do anything with merged release PR... for example deploy to stage or production and etc.
-  post-release-branch-merge-job:
-    needs: [release-please]
-    # Check if we merged our release PR
-    if: needs.release-please.outputs.release_created == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to prod environment
-        run: echo "Merged to release branch and deployed to production!"
-```
+      # Here we can do anything with merged release PR... for example deploy to stage or production and etc.
+      post-release-branch-merge-job:
+        needs: [release-please]
+        # Check if we merged our release PR
+        if: needs.release-please.outputs.release_created == 'true'
+        runs-on: ubuntu-latest
+        steps:
+          - name: Deploy to prod environment
+            run: echo "Merged to release branch and deployed to production!"
+    ```
+
+1. **IMPORTANT: To allow GitHub Actions to [create and approve](https://github.com/googleapis/release-please-action?tab=readme-ov-file#workflow-permissions) pull requests in GitHub repository settings!**
 
 ## Last thing!
 

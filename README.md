@@ -21,7 +21,7 @@
 
 1. Add [husky](https://typicode.github.io/husky/) and [commitlint](https://commitlint.js.org/guides/getting-started.html) to project and configure it
 
-    - Initialize it
+    - Initialize `husky`
 
       ```shell
       npm install -D husky @commitlint/{cli,config-conventional} &&
@@ -40,10 +40,12 @@
       npx --no -- commitlint --edit $1
       ```
 
-    - Configure [commitlint](https://commitlint.js.org/guides/getting-started.html)
+    - Configure [commitlint](https://commitlint.js.org/guides/getting-started.html) by adding bellow content to `./commitlint.config.js`
 
-      ```shell
-      echo "export default {\n\textends: ['@commitlint/config-conventional']\n};" > commitlint.config.js
+      ```js
+      export default {
+        extends: ['@commitlint/config-conventional']
+      };
       ```
 
 1. Enable `husky`
@@ -53,7 +55,7 @@
     ```
 
 
-1. Commit changes
+1. Commit and push changes
 
     ```shell
     git status
@@ -64,15 +66,29 @@
 
 ## [Release-please](https://github.com/googleapis/release-please)
 
-Add release-please configuration files
+1. Create `.release-please-manifest.json` file to the root folder with bellow content
 
-where `0.0.0` application version from `./package.json`
+    ```json
+    {
+      ".": "0.0.0"
+    }
+    ```
 
-  ```shell
-  echo "{\n\t\".\": \"0.0.0\"\n}" > .release-please-manifest.json
+    where `0.0.0` application version from `./package.json`
 
-  echo "{\n\t\"\$schema\": \"https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json\",\n\t\"release-type\": \"node\",\n\t\"pull-request-title-pattern\": \"chore(main): release\${component} \${version}\",\n\t\"include-component-in-tag\": false,\n\t\"packages\": {\n\t\t\".\": {}\n\t}\n}" > release-please-config.json
-  ```
+1. Create `./release-please-config.json` and add this content to it
+
+    ```json
+    {
+      "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+      "release-type": "node",
+      "pull-request-title-pattern": "chore(main): release${component} ${version}",
+      "include-component-in-tag": false,
+      "packages": {
+        ".": {}
+      }
+    }
+    ```
 
 ## [GitHub Actions](https://docs.github.com/en/actions)
 
@@ -112,3 +128,7 @@ jobs:
       - name: Deploy to prod environment
         run: echo "Merged to release branch and deployed to production!"
 ```
+
+## Last thing!
+
+Now we can make and push changes to branch and have release pull request for review. Remember to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) in your commit messages to get changes in to release pull request.

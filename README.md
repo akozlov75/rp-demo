@@ -135,6 +135,21 @@
 
 1. **IMPORTANT: To allow GitHub Actions to [create and approve](https://github.com/googleapis/release-please-action?tab=readme-ov-file#workflow-permissions) pull requests in GitHub repository settings!**
 
-## Last thing!
+## **Important thing**
 
 Now we can make and push changes to branch and have release pull request for review. Remember to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) in your commit messages to get changes in to release pull request.
+
+
+
+## Example of release-please usage in project
+
+```mermaid
+flowchart TD
+    Commit(Commit changes to the feature branch) --> |Wait for approvement| Merge
+    Merge(Merge changes into master branch) --> |Here is magic starts| Testdeploy
+    Testdeploy(Deployment to test environment) --> Releaseplease
+    Releaseplease(release-please) --> |PR not exist| RPR
+    Releaseplease(release-please) --o |PR exist| Stagedeploy
+    RPR{Release PR} -.- |Approved| TAG>create release tag] -.-> Merge
+    Stagedeploy(Deploymento to stage environment)
+```

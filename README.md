@@ -46,6 +46,13 @@
       echo "export default { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js
       ```
 
+1. Enable `husky`
+
+    ```shell
+    npx husky
+    ```
+
+
 1. Commit changes
 
     ```shell

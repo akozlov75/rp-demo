@@ -1,5 +1,7 @@
 # RELEASE-PLEASE DEMO
 
+## Repository
+
 1. Create new repository on [GitHub](https://github.com)
 1. [Scaffold](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) your vite project
 
@@ -14,6 +16,8 @@
     git branch -M main
     git remote add origin <URL TO YOUR REPOSITORY>
     ```
+
+## Husky and commitlint
 
 1. Add [husky](https://typicode.github.io/husky/) and [commitlint](https://commitlint.js.org/guides/getting-started.html) to project and configure it
 

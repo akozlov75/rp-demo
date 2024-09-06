@@ -2,8 +2,8 @@
 
 ## Repository
 
-1. Create new repository on [GitHub](https://github.com)
-1. [Scaffold](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) your vite project
+1. Create a new repository on [GitHub](https://github.com)
+1. [Scaffold](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) your ViteJS project
 
     ```shell
     npm create vite@latest <NAME OF APPLICATION> -- --template <TEMPLATE NAME>
@@ -66,7 +66,7 @@
 
 ## [Release-please](https://github.com/googleapis/release-please)
 
-1. Create `.release-please-manifest.json` file to the root folder with bellow content
+1. Create a `.release-please-manifest.json` file to the root folder with the below content
 
     ```json
     {
@@ -92,7 +92,7 @@
 
 ## [GitHub Actions](https://docs.github.com/en/actions)
 
-1. Set up GitHub actions by adding bellow content to `.github\workflows\main.yml` file
+1. Set up GitHub actions by adding the below content to `.github\workflows\main.yml` file
 
     ```yaml
     name: Create release PR
@@ -122,7 +122,7 @@
             with:
               target-branch: ${{ github.ref_name }}
 
-      # Here we can do anything with merged release PR... for example deploy to stage or production and etc.
+      # Here we can do anything with merged release PR, such as deploy to stage or production, etc.
       post-release-branch-merge-job:
         needs: [release-please]
         # Check if we merged our release PR
@@ -137,11 +137,11 @@
 
 ## **Important thing**
 
-Now we can make and push changes to branch and have release pull request for review. Remember to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) in your commit messages to get changes in to release pull request.
+Now we can make and push changes to branch and have a release pull-request for review. Remember to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) in your commit messages to get changes in to release pull-request.
 
 
 
-## Example of release-please usage in project
+## Example of release-please usage in the project
 
 ```mermaid
 flowchart TD

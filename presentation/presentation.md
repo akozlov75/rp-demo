@@ -146,4 +146,6 @@ Example repository is [here](https://github.com/akozlov75/rp-demo)
 
 *Kiitos, Kummarus ja Kuperkeikka (in Finnish)*
 
+---_
+
 <img src="./img/kumarrus ja kuperkeikka censored.jpg" />
